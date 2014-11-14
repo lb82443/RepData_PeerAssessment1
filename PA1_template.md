@@ -94,7 +94,20 @@ ggplot(mean_int, aes(x=Time, y= mean_steps)) + geom_line()
 
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
 
+
 We can see the peak average steps taken is at the 08:35 interval at approximately 206 steps.  
+
+
+```r
+p <- max(mean_int$mean_steps)
+
+mean_int[mean_int$mean_steps == p,]
+```
+
+```
+##     interval mean_steps                Time
+## 104      835      206.2 2014-01-01 08:35:00
+```
 
 ### Imputing missing values  
 
@@ -143,7 +156,7 @@ agg_date_i <- aggregate(x=list(agg_steps=imp_ds$new_steps), list(date=imp_ds$dat
 hist(agg_date_i$agg_steps)
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6.png) 
 
 ```r
 mean(agg_date_i$agg_steps)
@@ -200,7 +213,7 @@ mean_int_wknd$Time <- as.POSIXlt(paste("2014-01-01 ",
 ggplot(mean_int_wknd, aes(x=Time, y= mean_steps)) + geom_line() + facet_grid(wknd ~ .)
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6.png) 
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7.png) 
 
 Interestingly enough it appears that if we just examine the peak values the weekdays seem to have the greatest number fo steps. The overall graph shows that on weekends the users of these devices are more active than during the weekdays. I'd be further interested in seeing the occupations of the users. Perhaps fitbit users have more sedentary lifestyles during the working day.
 

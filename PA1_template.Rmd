@@ -62,7 +62,17 @@ mean_int$Time <- as.POSIXlt(paste("2014-01-01 ",
 ggplot(mean_int, aes(x=Time, y= mean_steps)) + geom_line() 
 ```  
 
+
 We can see the peak average steps taken is at the 08:35 interval at approximately 206 steps.  
+
+```{r}
+
+
+p <- max(mean_int$mean_steps)
+
+mean_int[mean_int$mean_steps == p,]
+
+```
 
 ### Imputing missing values  
 
